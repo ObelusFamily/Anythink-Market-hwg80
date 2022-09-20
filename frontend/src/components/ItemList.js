@@ -1,6 +1,6 @@
-import ItemPreview from './ItemPreview';
-import ListPagination from './ListPagination';
-import React from 'react';
+import ItemPreview from "./ItemPreview";
+import ListPagination from "./ListPagination";
+import React from "react";
 
 const ItemList = (props) => {
   if (!props.items) {
