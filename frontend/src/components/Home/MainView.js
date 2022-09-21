@@ -72,9 +72,6 @@ const mapDispatchToProps = (dispatch) => ({
 const MainView = (props) => {
   return (
     <div>
-      {(!props.items || props.items.length === 0) && (
-        <div id="empty">No items found</div>
-      )}
       <div className="feed-toggle">
         <ul className="nav nav-tabs">
           <YourFeedTab
@@ -88,7 +85,7 @@ const MainView = (props) => {
           <TagFilterTab tag={props.tag} />
         </ul>
       </div>
-      {props.items?.length > 0 && (
+      {props.items?.length > 0 ? (
         <ItemList
           pager={props.pager}
           items={props.items}
@@ -96,6 +93,14 @@ const MainView = (props) => {
           itemsCount={props.itemsCount}
           currentPage={props.currentPage}
         />
+      ) : (
+        <div
+          id="empty"
+          className="container"
+          style={{ height: "100px", width: "250px", textAlign: "center" }}
+        >
+          No Items found
+        </div>
       )}
     </div>
   );
