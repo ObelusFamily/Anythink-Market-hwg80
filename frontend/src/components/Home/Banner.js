@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class Banner extends React.Component {
   state = {
@@ -10,9 +10,12 @@ class Banner extends React.Component {
       <div className="banner text-white">
         <div className="container p-4 text-center">
           <div>
-            <span id="get-part">
-              A place to{' '}
-              <span onClick={() => this.setState({ showSearch: true })}>
+            <span>
+              A place to{" "}
+              <span
+                id="get-part"
+                onClick={() => this.setState({ showSearch: true })}
+              >
                 get
               </span>
             </span>
