@@ -29,6 +29,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Home extends React.Component {
+  state = {
+    searchString: "",
+  };
+
   componentWillMount() {
     const tab = "all";
     const itemsPromise = agent.Items.all;
@@ -45,6 +49,8 @@ class Home extends React.Component {
   }
 
   async handleSearch(searchString) {
+    this.setState({ searchString });
+
     if (searchString.length > 2) {
       const itemsResult = await agent.Items.all(undefined, searchString);
       this.props.onSearch(itemsResult.items);
@@ -61,7 +67,7 @@ class Home extends React.Component {
 
         <div className="container page">
           <Tags tags={this.props.tags} onClickTag={this.props.onClickTag} />
-          <MainView />
+          <MainView isSearching={this.state.searchString.length > 2} />
         </div>
       </div>
     );

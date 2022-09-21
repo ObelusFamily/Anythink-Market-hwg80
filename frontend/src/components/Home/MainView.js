@@ -85,15 +85,7 @@ const MainView = (props) => {
           <TagFilterTab tag={props.tag} />
         </ul>
       </div>
-      {props.items?.length > 0 && !props.loading ? (
-        <ItemList
-          pager={props.pager}
-          items={props.items}
-          loading={props.loading}
-          itemsCount={props.itemsCount}
-          currentPage={props.currentPage}
-        />
-      ) : (
+      {props.isSearching && props.items.length === 0 ? (
         <div
           id="empty"
           className="container"
@@ -101,6 +93,14 @@ const MainView = (props) => {
         >
           No Items found
         </div>
+      ) : (
+        <ItemList
+          pager={props.pager}
+          items={props.items}
+          loading={props.loading}
+          itemsCount={props.itemsCount}
+          currentPage={props.currentPage}
+        />
       )}
     </div>
   );
