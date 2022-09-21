@@ -1,21 +1,21 @@
-import ItemList from "../ItemList";
-import React from "react";
-import agent from "../../agent";
-import { connect } from "react-redux";
-import { CHANGE_TAB } from "../../constants/actionTypes";
+import ItemList from '../ItemList';
+import React from 'react';
+import agent from '../../agent';
+import { connect } from 'react-redux';
+import { CHANGE_TAB } from '../../constants/actionTypes';
 
 const YourFeedTab = (props) => {
   if (props.token) {
     const clickHandler = (ev) => {
       ev.preventDefault();
-      props.onTabClick("feed", agent.Items.feed, agent.Items.feed());
+      props.onTabClick('feed', agent.Items.feed, agent.Items.feed());
     };
 
     return (
       <li className="nav-item">
         <button
           type="button"
-          className={props.tab === "feed" ? "nav-link active" : "nav-link"}
+          className={props.tab === 'feed' ? 'nav-link active' : 'nav-link'}
           onClick={clickHandler}
         >
           Your Feed
@@ -29,13 +29,13 @@ const YourFeedTab = (props) => {
 const GlobalFeedTab = (props) => {
   const clickHandler = (ev) => {
     ev.preventDefault();
-    props.onTabClick("all", agent.Items.all, agent.Items.all());
+    props.onTabClick('all', agent.Items.all, agent.Items.all());
   };
   return (
     <li className="nav-item">
       <button
         type="button"
-        className={props.tab === "all" ? "nav-link active" : "nav-link"}
+        className={props.tab === 'all' ? 'nav-link active' : 'nav-link'}
         onClick={clickHandler}
       >
         Global Feed
@@ -85,14 +85,17 @@ const MainView = (props) => {
           <TagFilterTab tag={props.tag} />
         </ul>
       </div>
-
-      <ItemList
-        pager={props.pager}
-        items={props.items}
-        loading={props.loading}
-        itemsCount={props.itemsCount}
-        currentPage={props.currentPage}
-      />
+      {props.items?.length > 0 ? (
+        <ItemList
+          pager={props.pager}
+          items={props.items}
+          loading={props.loading}
+          itemsCount={props.itemsCount}
+          currentPage={props.currentPage}
+        />
+      ) : (
+        <div id="empty">No Items found</div>
+      )}
     </div>
   );
 };
