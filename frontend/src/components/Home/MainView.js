@@ -85,7 +85,7 @@ const MainView = (props) => {
           <TagFilterTab tag={props.tag} />
         </ul>
       </div>
-      {props.items?.length > 0 ? (
+      {props.items?.length > 0 && !props.loading ? (
         <ItemList
           pager={props.pager}
           items={props.items}
