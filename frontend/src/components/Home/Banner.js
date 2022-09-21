@@ -1,22 +1,34 @@
-import React from "react";
+import React from 'react';
 
-const Banner = (props) => {
-  const { onSearch } = props;
-  return (
-    <div className="banner text-white">
-      <div className="container p-4 text-center">
-        <div>
-          <span id="get-part">A place to get</span>
-          <input
-            onChange={(e) => onSearch(e.target.value)}
-            type="text"
-            id="search-box"
-          />
-          <span> the cool stuff.</span>
+class Banner extends React.Component {
+  state = {
+    showSearch: false,
+  };
+
+  render() {
+    return (
+      <div className="banner text-white">
+        <div className="container p-4 text-center">
+          <div>
+            <span id="get-part">
+              A place to{' '}
+              <span onClick={() => this.setState({ showSearch: true })}>
+                get
+              </span>
+            </span>
+            {this.state.showSearch && (
+              <input
+                onChange={(e) => this.props.onSearch(e.target.value)}
+                type="text"
+                id="search-box"
+              />
+            )}
+            <span> the cool stuff.</span>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Banner;
